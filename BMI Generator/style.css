@@ -1,0 +1,58 @@
+.container {
+    width: 575px;
+    height: 825px;
+    border: 1.5px dotted black;
+    background-color: #797978;
+    padding-left: 30px;
+  }
+  #height,
+  #weight {
+    width: 150px;
+    height: 25px;
+    margin-top: 30px;
+    border-radius: 5px;
+    border-color: black;
+  }
+
+  h1{
+    text-decoration: underline ;
+  }
+  
+  #weight-guide {
+    margin-left: 75px;
+    margin-top: 25px;
+  }
+  
+  #calc{
+    padding: 2px;
+    font-size: small;
+  }
+
+  #results {
+    font-size: 35px;
+    margin-left: 90px;
+    margin-top: 20px;
+    color: rgb(241, 241, 241);
+  }
+  
+  button {
+    width: 100px;
+    height: 25px;
+    margin-left: 97px;
+    margin-top: 25px;
+    background-color: beige;
+    padding: 1px 30px;
+    border-radius: 8px;
+    color: #212121;
+    text-decoration: none;
+    border: 1.5px solid #212121;
+  
+    font-size: 25px;
+  }
+  
+  h1 {
+    padding-left: 15px;
+    padding-top: 25px;
+    
+  }
+  
