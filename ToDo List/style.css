@@ -1,6 +1,6 @@
 :root{
     --gradient: linear-gradient(
-    0deg, black 0%, #133785fd 100%
+    0deg, black 0%, #0446d5fd 100%      /*133785fd*/
     );
     --dark: #001747;
    --grey: #9198a7;
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, p {
     height: 60%;
     width: 60%;
     box-shadow: 0 1rem 3rem 1rem rgba(0, 23, 71, 0.15);
-    max-width: 23rem;               /* mtlb kitna bhi size badhe, maxm 30rem tak hi jaskta hai size*/
+    max-width: 23rem;               /* max possible size in width*/
 }
 
 h2{
@@ -100,6 +100,13 @@ li {
 }
 
 #todoList p{
+    display: flex;
+    gap: 1rem;
+    color: var(--dark);
+    align-items: center;
+}
+
+#todoList .disabled{
     color: #8f98a8;
 }
 
