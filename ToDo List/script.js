@@ -6,6 +6,8 @@
 
 // JS Object Notation : formats JS code to make it easily readable.
 
+// collecting all the elements in different variables to change them accordingly!! heheheee
+
 let todo = JSON.parse(localStorage.getItem("todo")) || [];
 const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             addTask();
         }
     });
-    deleteButton.addEventListener('click', deleteAllTasks()) ;    
+    deleteButton.addEventListener('click', deleteAllTasks) ;    
     displayTasks();     
 });
 
@@ -36,17 +38,70 @@ function addTask() {
             disabled: false
         });
         saveToLocalStorage(); 
-        todoInput.clear()
+        todoInput.value = "";
+        displayTasks()
     }
+}
+
+
+
+
+function displayTasks() {
+    //some logic to delete the list, isn't it?
+    todoList.innerHTML = "";
+    todo.forEach ((item, index) => {
+        const p = document.createElement('p');
+        p.innerHTML = `
+           <div class = "todo-container">
+              <input type="checkbox" class="todo-checkbox" id="input-${index}" ${item.disabled ? "checked" : ""}>
+              <p id="todo-${index}" class="${item.disabled ? "disabled" : ""}"
+               onclick="editTask(${index})">${item.text}</p>
+            </div>
+        
+        `;
+        p.querySelector(".todo-checkbox").addEventListener("change", ()=>{
+            toggleTask(index);
+        });
+        todoList.appendChild(p);
+    });
+    todoCount.textContent = todo.length;
+}
+
+// now let's create the function to toggle our tasks
+function toggleTask(index){
+    todo[index].disabled = !todo[index].disabled;
+    saveToLocalStorage();
+    displayTasks();
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("todo", JSON.stringify(todo));
 }
 
 function deleteAllTasks() {
     //some logic to delete the list, isn't it?
-
+    todo = [];
+    saveToLocalStorage();
+    displayTasks();
 }
 
-function displayTasks() {
-    //some logic to delete the list, isn't it?
+// now what if you made a typo! how to edit it after adding?
 
+function editTask (index) {
+    const todoItem = document.getElementById(`todo-${index}`);
+    const existingText = todo[index].text;
+    const inputElement = document.createElement("input");
+
+    inputElement.value = existingText;
+    todoItem.replaceWith(inputElement);
+    inputElement.focus();                       //so that you don't start writing in the input field itself
+
+    inputElement.addEventListener("blur", function () {
+        const updatedText = inputElement.value.trim();
+        if(updatedText) {
+            todo[index].text = updatedText;
+            saveToLocalStorage();
+        }
+        displayTasks();
+    })
 }
-
